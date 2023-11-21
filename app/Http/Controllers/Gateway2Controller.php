@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Log;
 
 class Gateway2Controller extends Controller
 {
-    public function handleCallback(Request $request,  GatewaySService $gatewaySService)
+    public function handleCallback(Request $request, GatewaySService $gatewaySService)
     {
         try {
             $gatewaySService->verifySignature($request);
@@ -19,6 +19,7 @@ class Gateway2Controller extends Controller
             return response()->json(['error' => 'Payment not found'], 404);
         } catch (\Exception $e) {
             Log::info($e->getMessage());
+
             return response()->json(['error' => 'Internal Server Error'], 500);
         }
     }
