@@ -11,10 +11,11 @@ class GatewaySService
     public function verifySignature($request)
     {
         try {
-            $calculatedSignature = md5(implode('.', $request->toArray()) . env('P_APP_KEY'));
+            $calculatedSignature = md5(implode('.', $request->toArray()).env('P_APP_KEY'));
             abort_if($calculatedSignature !== $request->header('Authorization'), 403, 'Invalid signature');
-        }catch (Exception $exception){
+        } catch (Exception $exception) {
             Log::error($exception->getMessage());
+
             return false;
         }
     }
@@ -22,7 +23,7 @@ class GatewaySService
     public function updateStatus($request)
     {
         return Payment::whereIn('id', [$request->invoice])->update([
-            'status' => $request->status
+            'status' => $request->status,
         ]);
     }
 }

@@ -1,8 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Gateway1Controller;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,8 +12,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-use App\Http\Controllers\Gateway1Controller;
 use App\Http\Controllers\Gateway2Controller;
+use Illuminate\Support\Facades\Route;
 
 Route::post('/gateway1/callback', [Gateway1Controller::class, 'handleCallback']);
 Route::post('/gateway2/callback', [Gateway2Controller::class, 'handleCallback']);
